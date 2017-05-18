@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Person</title>
+	<script type="text/javascript" src="person.js"></script>
+</head>
+<body onload="load('center', 'item')">
+
+<style type="text/css">
+
+#user
+{
+    color: red;
+    text-align: right;
+    float: center;
+    padding: 5px;
+}
+
+#person
+{
+    text-align: center;
+    float: center;
+}
+
+#orders
+{
+	float: center;
+}
+
+.title {
+    background-color: green;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+.center
+{
+	text-align: center;
+	float: left;
+	width: 100%;
+}
+
+.item
+{
+	background-color: orange;
+	width: 30%;
+	float: left;
+	margin: 5px;
+	text-align: center;
+}
+
+.item p: hover
+{
+	color: white;
+	background-color: yellow;
+}
+
+</style>
+
+<div id="user">
+    <a onclick="viewCar()">购物车</a>
+    <a id="user_enter", title="退出" onclick="login()"></a>
+</div>
+
+<div class="title">
+	<h1 onclick="modify()">我的信息</h1>
+</div>
+
+<div id="person">
+	<table cellpadding="3" cellspacing="0" style="margin: auto;">
+		<tr>
+			<td>用户名</td>
+			<td id="name"></td>
+		</tr>
+		<tr>
+			<td>头像</td>
+			<td id="avatar"></td>
+		</tr>
+		<tr>
+			<td>性别</td>
+			<td id="sex"></td>
+		</tr>
+		<tr>
+			<td>生日</td>
+			<td id="birthday"></td>
+		</tr>
+		<tr>
+			<td>邮箱</td>
+			<td id="mail"></td>
+		</tr>
+		<tr>
+			<td>手机</td>
+			<td id="phone"></td>
+		</tr>
+	</table>
+</div>
+
+<div class="title">
+	<h1>我的订单</h1>
+</div>
+
+<div id="orders">
+	
+</div>
+
+
+</body>
+
+
+</html>

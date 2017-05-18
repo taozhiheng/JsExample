@@ -1,0 +1,139 @@
+<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Ever Stor</title>
+	<h1 align="center">Persist Store, Admin Home</h1>
+</head>
+<body onload="checkOnline()">
+
+<style>
+
+#user
+{
+    color: red;
+    text-align: right;
+    float: center;
+    padding: 5px;
+}
+
+#header {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+#nav {
+    line-height: 30px;
+    background-color: #eeeeee;
+    height: 300px;
+    width: 100px;
+    float: left;
+    padding: 5px; 
+}
+
+#content {
+    
+    background-color: #eeeeee;
+    padding: 10px; 
+    text-align: center;
+}
+
+#footer {
+    background-color: pink;
+    color: white;
+    text-align: center;
+    padding: 5px; 
+}
+
+#tail {
+    background-color: purple;
+    color: white;
+    clear: both;
+    text-align: center;
+    padding: 5px; 
+}
+
+button {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+</style>
+
+<script type="text/javascript" src='admin.js'></script>
+
+<div id="user">
+	<a id="user_enter", onclick="login()">请登录</a>
+</div>
+
+<div id="content">
+	<form id="form" style="color: blue;">
+
+		商品标识:
+        <br/>
+        <input type="number" name="id">
+        <br/>
+		<br/>
+        商品名称:
+        <br/>
+        <input type="text" name="name">
+		<br/>
+		<br/>
+        商品类别:
+        <br/>
+        <select name="type">
+        	<option value="family">家用电器</option>
+        	<option value="electron">电子产品</option>
+        	<option value="furniture">家具厨具</option>
+        	<option value="clothes">服装配饰</option>
+        	<option value="cosmetic">清洁化妆</option>
+        	<option value="box">鞋袜箱包</option>
+        	<option value="clock">运动钟表</option>
+        	<option value="car">汽车用品</option>
+        	<option value="baby">母婴玩具</option>
+        	<option value="food">食品特产</option>
+        	<option value="drug">医药保健</option>
+        	<option value="book">图书音响</option>
+        	<option value="other">其他</option>
+        </select>
+        <br/>
+        <br/>
+        商品价格:
+        <br/>
+        <input type="number" name="price"> 
+        <br/>
+        <br/>
+        商品描述:
+        <br/>
+        <input type="text" name="description">
+        <br/>
+        <br/>
+        售后服务:
+        <br/>
+        <input type="text" name="service">
+        <br/>
+        <br/>
+	</form>
+</div>
+
+<div>
+    <p id="error" style="color: red; padding: 5px"></p>
+</div>
+
+<div id="footer">
+	<button onclick="add()">添加商品</button>
+	<button onclick="modify()">修改商品</button>
+</div>
+
+<div id="tail">
+    <h1 id="result"></h1>
+</div>
+
+
+</body>
+</html>

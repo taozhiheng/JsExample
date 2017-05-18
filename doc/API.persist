@@ -1,0 +1,499 @@
+网上销售系统
+-------------
+
+
+-------------
+API
+	resonse:
+		所有的response均为json
+
+	authorization
+		需登录权限的操作会注明 @authenticated ,此时HTTP Header中需存在 Cookie: role=x; user=x; uuid=x; lasttime=x;, 否则会返回 401 Unauthorized
+		无权限(signed_value错误)的请求会返回 403 Forbidden
+
+	参数格式说明：
+		name | type | description
+
+	HTTP Header示例：
+		Content-type: application/json; charset=UTF-8
+		Cookie: role=x; user=x; uuid=x; lasttime=x;
+
+
+	Client:
+	客户登录
+	/client/login
+		POST
+			input:
+				username | string
+				password | string
+			response:
+				200 OK
+				{
+					"user": "userId",
+					"uuid": "uuid" 
+				}
+				400 Bad Request
+				{
+					"error": "Username or password is wrong"
+				}
+	客户退出
+	/client/logout
+		@authentication
+			PUT
+				input:
+				reponse:
+				200 OK
+				{
+					"status": "Succeed to logout"
+				}
+
+	客户注册
+	/client/register
+		POST
+			input:
+				name 	| string
+				mail 	| string 	| 不可重复
+				phone 	| string 	| 11位数字
+				password | string 	| 6-16位
+				avatar 	| string 	| 可选
+				sex 	| boolean 	| 可选，false:boy, true:girl
+				birthday | string 	| 可选，yyyy-mm-dd
+			response:
+				201 Created
+				{
+					"status": "Succeed to register username"
+				}
+				400 Bad Request
+				{
+					{
+						"name": "mail/name/password/phone",
+						"error": "The mail has existed or is invalid/The name must not be empty/The length of the password must be between 6 and 16/The phone number is invalid"
+					}
+				}
+	客户信息查询、修改
+	/client/info
+		@authenticated
+		GET
+			reponse:
+				200 OK
+				{
+					"name": "",
+					"mail": "",
+					"phone": "",
+					"avatar": "",
+					"sex": "",
+					"birthday": "",
+					"addrs": ["", ""]
+				}
+				404 Not Found
+				{
+					"error": "No such client"
+				}
+		@authenticated
+		PATCH
+			input:
+				name 	| string 	| 不修改可为空
+				phone 	| string 	| 不修改可为空
+				avatar 	| string 	| 不修改可为空
+				sex 	| boolean 	| 不修改可为空
+				birthday | string	| 不修改可为空
+				addrs 	| list 		| ["", ""]，不修改可为空
+				old_password | string | 修改password时不可为空
+				password | string 	| 不修改可为空
+			response:
+				200 OK
+				{
+					"items": ["name", "phone", ...]
+				}
+				400 Bad Request
+				{
+					{
+						"name": "old_password".
+						"error": "Old password is wrong"
+					}
+				}
+	Order
+	客户订单查询、增加、修改、删除
+	/client/orders
+		@authenticated
+		GET
+			input:
+				start 	| int 	| 开始位置，可为空，默认0
+				count 	| int 	| 查询数量，可为空，空则默认60，-1返回全部
+				status 	| int 	| 订单状态类型，0-4，可为空，空则返回全部类型
+			response:
+				200 OK
+				{
+					"start": 0,
+					"num": 60,
+					"orders":
+					[
+						"id": 4548787431,
+						"create_time": "yyyy-MM-dd HH:mm:ss",
+						"modify_time": "yyyy-MM-dd HH:mm:ss",
+						"status": 0,
+						"recv_name": "收货人姓名",
+						"recv_phone": "收货人手机",
+						"recv_addr": "收获人地址",
+						"goods": 
+						[
+							{
+								"goods_id": 9876543210,
+								"goods_count": 2,
+								"goods_money": "999.99" 
+							}
+						]
+					]
+				}
+		新增订单
+		@authenticated
+		PUT
+			input:
+				create_time | string
+				recv_name | string
+				recv_phone | string
+				recv_addr | string
+				goods | list
+			reponse:
+				201 Created
+				{
+					"id": 53456
+				}
+		修改订单:0待付款->待发货1，2待收货->待评价3，3待评价->已完成4
+		@authenticated
+		PATCH
+			input:
+				id | long
+			reponse:
+				204 No Content
+				400 Bad Request
+				{
+					"error": "The order in this status can not be modified by client"
+				}
+				404 Not Found
+				{
+					"error": "No such order"
+				}
+		删除/取消订单
+		@authenticated
+		DELETE
+			input:
+				id | long
+			reponse:
+				204 No Content
+				400 Bad Request
+				{
+					"error": "The order can not be deleted"
+				}
+				404 Not Found
+				{
+					"error": "No such order"
+				}
+	订单数量查询
+	/client/orders/count
+		@authenticated
+		GET
+			input:
+				status | int | 订单状态类型，0-4，可为空，空则返回全部类型
+			response:
+				200 OK
+				{
+					"count": 120
+				}
+
+	
+	Admin:
+	管理员登录
+	/admin/login
+		POST
+			input:
+				username | string
+				password | string
+			response:
+				200 OK
+				{
+					"user": "adminId",
+					"uuid": "uuid"
+				}
+				400 Bad Request
+				{
+					"error": "Username or password is wrong"
+				}
+	管理员退出
+	/admin/logout
+		@authentication
+			PUT
+				input:
+				reponse:
+				200 OK
+				{
+					"status": "Succeed to logout "
+				}
+	管理员注册
+	/admin/register
+		POST
+			input:
+				username | string | 不可重复
+				passwrod | string | 6-16位
+			response:
+				201 Created
+				{
+					"status": "Succeed to register username"
+				}
+				400 Bad Request
+				{
+					{
+						"error": "The username has existed"
+					}
+				}
+	管理员信息修改
+	/admin/info
+		@authenticated
+		PATCH
+			input:
+				old_password | string
+				password | string
+			response:
+				200 OK
+				{
+					"item": ["password"]
+				}
+				400 Bad Request
+				{
+					{
+						"name": "old_password".
+						"error": "Old password is wrong"
+					}
+				}
+	管理员订单查询、增加、修改
+	/admin/orders
+		@authenticated
+		GET
+			input:
+				start | int | 开始位置，可为空，默认0
+				count | int | 查询数量，可为空，-1返回全部
+				status | int | 订单状态类型，0-4，可为空，空择返回全部类型
+				client | long | 客户标识，可为空，空则返回全部客户
+			response:
+				{
+					"start": 0,
+					"num": 60,
+					"orders":
+					[
+						"id": 4548787431,
+						"client_id": 44554,
+						"create_time": "yyyy-MM-dd HH:mm:ss",
+						"modify_time": "yyyy-MM-dd HH:mm:ss",
+						"status": 0,
+						"recv_name": "收货人姓名",
+						"recv_phone": "收货人手机",
+						"recv_addr": "收获人地址",
+						"goods": 
+						[
+							{
+								"goods_id": 9876543210,
+								"goods_count": 2,
+								"goods_money": "999.99" 
+							}
+						]
+					]
+				}
+		@authenticated (admin)
+		PUT
+			input:
+				create_time | string
+				goods | list
+			reponse:
+				201 Created
+				{
+					"id": 53456
+				}
+		@authenticated
+		PATCH
+			input:
+				id | long | 唯一标识
+			response:
+				204 No Content
+				400 Bad Request
+				{
+					"error": "The order in this status can only be modified by client"
+				}
+		
+
+
+	管理员账单查询、插入
+	/admin/bills
+		@authenticated (admin)
+		GET
+			input:
+				start | int | 为空则默认是0
+				count | int | 为空则默认是60
+			reponse:
+				200 OK
+				{
+					"start": 0,
+					"num": 60,
+					"bills":
+					[
+						{
+							"goods_id": 65646,
+							"goods_count": 2,
+							"goods_money": 120.00，
+							"time": ""
+						}
+					]
+				}
+		@authenticated (admin)
+		@deprecated
+		PUT
+			input:
+				goods_id | long
+				goods_count | int
+				goods_money | float
+				time | long
+			reponse:
+				201 Created
+				{
+					"id": 4254
+				}
+				404 Not Found
+				{
+					"error": "no such goods"
+				}
+	商品查询、增加、修改、删除
+	/goods
+		GET
+			input:
+				id | long
+			reponse:
+				200 OK
+				{
+					"id": 41545,
+					"name": "棒棒糖",
+					"type": "食品",
+					"price": 0.50,
+					"description": "",
+					"service": "",
+					"imgs": ["url1", "url2", ...],
+					"props":
+					[
+						{
+							"name": "",
+							"value": ""
+						}
+					]
+				}
+				404 Not Found
+				{
+					"error": "No such goods"
+				}
+		@authenticated (admin)
+		PUT
+			input:
+				name | string
+				type | string
+				price | float
+				description | string
+				service | string
+				imgs | list
+				props | list
+			reponse:
+				201 Created
+				{
+					"id": 45454
+				}
+				400 Bad Request
+				{
+					"error": "The goods'name of this type has existed"
+				}
+		@authenticated (admin)
+		PATCH
+			input:
+				id | long
+				name | string | 可为空
+				type | string | 可为空
+				price | float | 可为空
+				description | string | 可为空
+				service | string | 可为空
+				imgs | list | 可为空
+				props | list | 可为空
+			reponse:
+				204 No Content
+				404 Not Found
+				{
+					"error": "No such goods"
+				}
+		@authenticated (admin)
+		DELETE
+			input:
+				id | lnog
+			reponse:
+				204 No Content
+				400 Bad Request
+				{
+					"error": "The goods can not be removed because there are records about it"
+				}
+	商品库存数量查询
+	/goods/count
+		GET
+			 input:
+			 	id | long
+			 response:
+			 200 OK
+			 {
+			 	"count": 1000
+			 }
+			 404 Not Found
+			 {
+			 	"error": "No such goods"
+			 }
+	商品种类查询
+	/goods/type
+		GET
+			input:
+				type | string
+				start | int
+				count | int
+			response:
+				200 OK
+				{
+					"start"：0，
+					"num": 60,
+					"goods":
+					[
+						{
+							"id": 41545,
+							"name": "棒棒糖",
+							"price": 0.50,
+							"description": "",
+							"service": "",
+							"imgs": "["url1", "url2", ...]",
+							"props":
+							"[
+								{
+									"name": "",
+									"value": ""
+								}
+							]"
+						}
+					]
+				}
+				404 Not Found
+				{
+					"error": "No such type goods"
+				}
+	商品种类数量查询
+	/goods/type/count
+		GET
+			input:
+				type | string
+			reponse:
+				200 OK
+				{
+					"count": 120
+				}
+				404 Not Found
+				{
+					"error": "No such type goods"
+				}
+

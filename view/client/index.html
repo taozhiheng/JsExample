@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Persist Store</title>
+
+	<script type="text/javascript" src="client.js"></script>
+
+</head>
+
+<body onload="checkOnline()">
+
+<style type="text/css">
+
+#user
+{
+    color: red;
+    text-align: right;
+    float: center;
+    padding: 5px;
+}
+
+#header
+{
+	background-color: green;
+    color: white;
+    text-align: center;
+    float: center;
+}
+
+#classify
+{
+	line-height: 30px;
+    background-color: purple;
+    color: white;
+    float: left;
+    text-align: center;
+    width: 10%;
+}
+#classify a:hover
+{
+	color: purple;
+	background-color: white
+}
+
+#sort
+{
+	background-color: #cccccc;
+    color: white;
+    text-align: center;
+    float: right;
+    width: 90%;
+}
+
+#goods
+{
+	
+	width: 90%;
+	float: left;
+}
+
+.item
+{
+	background-color: orange;
+	width: 30%;
+	float: left;
+	margin: 5px;
+	text-align: center;
+}
+
+.item p: hover
+{
+	color: white;
+	background-color: yellow;
+}
+
+</style>
+
+<div id="user">
+	<a onclick="viewCar()">购物车</a>
+	<a id="user_enter", onclick="login()">请登录</a>
+</div>
+
+<div id="header">
+	<h1>Persist Store</h1>
+</div>
+
+
+<div id="classify">
+	
+	<br/>
+	<a onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">全部商品</a>
+	<br/>
+	<br/>
+	<a name="family" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">家用电器</a>
+	<br/>
+	<br/>
+	<a name="electron"onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">电子产品</a>
+	<br/>
+	<br/>
+	<a name="furniture" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">家具厨具</a>
+	<br/>
+	<br/>
+	<a name="clothes" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">服装配饰</a>
+	<br/>
+	<br/>
+	<a name="cosmetic" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">清洁化妆</a>
+	<br/>
+	<br/>
+	<a name="box" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">鞋袜箱包</a>
+	<br/>
+	<br/>
+	<a name="clock" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">运动钟表</a>
+	<br/>
+	<br/>
+	<a name="car"onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">汽车用品</a>
+	<br/>
+	<br/>
+	<a name="baby" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">母婴玩具</a>
+	<br/>
+	<br/>
+	<a name="food" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">食品特产</a>
+	<br/>
+	<br/>
+	<a name="drug" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">医药保健</a>
+	<br/>
+	<br/>
+	<a name="book" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">图书音响</a>
+	<br/>
+	<br/>
+	<a name="other" onmouseover="setClass(this, 'classify-selected')" onmouseout="setClass(this, 'classify-normal')" onclick="viewGoods(this, 'item')">其他</a>
+	<br/>
+</div>
+
+<div id="sort">
+	<h1 id='curClassify' style="color: yellow;"></h1>
+	<!-- <a >销量排序</a>
+	<a >价格排序</a>
+	<a >上架时间</a> -->
+</div>
+
+<div id="goods">
+	
+</div>
+
+</body>
+
+</html>

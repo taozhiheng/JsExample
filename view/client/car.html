@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Shopping Car</title>
+	<script type="text/javascript" src="car.js"></script>
+
+<style type="text/css">
+
+#user
+{
+    color: red;
+    text-align: right;
+    float: center;
+    padding: 5px;
+}
+
+#header
+{
+	background-color: green;
+    color: white;
+    text-align: center;
+    float: center;
+}
+
+#content {
+    
+    background-color:#eeeeee;
+    padding:20px; 
+    text-align: left;
+}
+
+
+
+#confirm {
+    background-color:pink;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+
+
+#title
+{
+	background-color: green;
+    color: white;
+    text-align: center;
+    float: center;
+}
+
+#goods
+{
+	
+	width: 90%;
+	float: left;
+}
+
+.item
+{
+	background-color: orange;
+	width: 30%;
+	float: left;
+	margin: 5px;
+	text-align: center;
+}
+
+.item p: hover
+{
+	color: white;
+	background-color: yellow;
+}
+
+</style>
+
+
+</head>
+
+<body onload="load('item')">
+
+
+<div id="user">
+	<a id="user_enter", onclick="login()">请登录</a>
+</div>
+
+<div id="header">
+	<h1>购物车</h1>
+</div>
+
+<div id="content">
+	<form id="form" style="color: blue;">
+        <pre>Name:      <input type="text" name="name"></pre>
+		<br/>
+		<br/>
+        <pre>Phone:     <input type="number" name="phone" size="11"></pre> 
+        <br/>
+        <br/>
+        <pre>Address:   <input type="text" name="addr"></pre>
+        <br/>
+        <br/>
+	</form>
+</div>
+
+<div>
+    <p id="error" style="color: red; padding: 5px"></p>
+</div>
+
+<div id="confirm">
+	<button onclick="pay()">购买</button>
+</div>
+
+<div id="title">
+	<h2>购物清单</h2>
+</div>
+
+<div id="goods">
+	
+</div>
+
+</body>
+
+</html>

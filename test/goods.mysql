@@ -1,0 +1,23 @@
+//insert goods, type is family
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('电视机', 'family', '3000', '高清', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('冰箱', 'family', '2000', '制冷', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('洗衣机', 'family', '900', '便捷', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('空调', 'family', '4000', '冷暖', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('电饭煲', 'family', '500', '煮饭', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('洗碗机', 'family', '800', '省力', '全国联保，无忧退换');
+//insert goods, type is electron
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('数码相机', 'electron', '3000', '摄影', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('电池', 'electron', '2', '大容量', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('充电机', 'electron', '200', '充电快', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('手表', 'electron', '900', '精准', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('耳机', 'electron', '200', '极致音质', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('平板', 'electron', '3000', '掌上操控', '全国联保，无忧退换');
+//insert goods, type is furniture
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('地毯', 'furniture', '200', '大气', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('抱枕', 'furniture', '150', '舒适，可爱', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('凉席', 'furniture', '200', '竹质，清凉', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('台灯', 'furniture', '80', '柔和，护眼', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('雨伞', 'furniture', '50', '晴雨双用', '全国联保，无忧退换');
+INSERT INTO `course`.`goods` (`name`, `type`, `price`, `description`, `service`) VALUES ('花瓶', 'furniture', '500', '高贵，典雅', '全国联保，无忧退换');
+
+

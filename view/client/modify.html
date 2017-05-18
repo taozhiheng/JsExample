@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Modify</title>
+	<h1></h1>
+</head>
+<body>
+
+<style>
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px; 
+}
+#content {
+    
+    background-color:#eeeeee;
+    padding:20px; 
+    text-align: left;
+}
+#footer {
+    background-color:pink;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+#tail {
+    background-color:purple;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+
+</style>
+
+<script type="text/javascript" src='modify.js'>
+	
+</script>
+
+<div id="header">
+	<h1>Modify Personal Information </h1>
+</div>
+
+<div id="content">
+	<form id="form" style="color: blue;">
+		 
+        <pre>Name:         <input type="text" name="name"></pre>
+		<br/>
+		<br/>
+        <pre>Phone:        <input type="number" name="phone" size="11"></pre> 
+        <br/>
+        <br/>
+        <pre>Old Password: <input type="password" name="password"></pre>
+        <br/>
+        <br/>
+        <pre>New Password: <input type="password" name="password2"></pre>
+        <br/>
+        <br/>
+        <pre>Avatar:       <input type="url" name="avatar"></pre>
+		<br/>
+		<br/>
+        <pre>Sex:          <input type="radio" name="sex" checked="true">Male<input type="radio" name="sex">Female</pre>
+        <br>
+        <br>
+        <pre>Birthday:     <input type="date" name="birthday" min="1970-01-01"></pre>
+        <br/>
+        <br/>
+	</form>
+</div>
+
+<div>
+    <p id="error" style="color: red; padding: 5px"></p>
+</div>
+
+<div id="footer">
+	<button onclick="modify()">Modify</button>
+</div>
+
+<div id="tail">
+    <h1 id="result"></h1>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Detail</title>
+    <script type="text/javascript" src="detail.js"></script>
+</head>
+<body bgcolor="orange" onload="load()">
+
+<style>
+#user
+{
+    color: red;
+    text-align: right;
+    float: center;
+    margin: 5px;
+    padding: 5px;
+}
+
+#name
+{
+    float: center;
+    color: yellow;
+}
+
+#description
+{
+    float: center;
+    color: purple;
+}
+
+#service
+{
+    float: center;
+    color: red;
+}
+
+#form
+{
+    float: center;
+    text-align: center;
+    padding: 5px;
+}
+
+#buy
+{
+    float:center;
+    color: green;
+    text-align: center;
+    margin: 10px;
+}
+
+h1
+{
+    text-align: center;
+}
+
+h2
+{
+    text-align: center;
+}
+
+p
+{
+    text-align: center;
+}
+
+button {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: white;
+    background-color: green;
+}
+
+</style>
+
+<div id="user">
+    <a onclick="viewCar()">购物车</a>
+    <a id="user_enter", onclick="login()">请登录</a>
+</div>
+
+
+<div id="name">
+    <h1>商品名称</h1>
+</div>
+
+<hr/>
+
+<div id="description">
+    <p>商品描述</p>
+</div>
+
+<div id="service">
+    <p>商品销售服务</p>
+</div>
+
+<div id="price">
+    <h2>商品价格</h2>
+</div>
+
+<hr/>
+
+<div id="form">
+    <form>
+        购买数量
+        <input type="number" name="count" min="1"/>
+    </form>
+</div>
+
+<div id="buy">
+    <button onclick="buy()">加入购物车</button>
+</div>
+
+</body>
+</html>
